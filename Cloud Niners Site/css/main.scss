@@ -9,6 +9,21 @@ $colors: (
     @return map-get($colors, $color-name);
 }
 
+$tablet: 1094px;
+$phone: 500px;
+
+@mixin tablet {
+    @media (max-width: #{$tablet}) {
+        @content;
+    }
+}
+
+@mixin phone {
+    @media (max-width: #{$phone}) {
+        @content;
+    }
+}
+
 html {
     background-color:white;
 }
@@ -41,14 +56,48 @@ nav {
     width: 75%;
     display: flex;
     justify-content: flex-end;
-    padding: 3em 4.25em 0 0;
+    padding: 4em 0 0 0;
     list-style-type: none;
+
+    @include tablet {
+        width: 100%;
+        flex-direction: column;
+        padding: 0 0 0 0;
+    }
+
+    @include phone {
+        height: 50%;
+    }
+    
+    ul {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        
+        @include tablet {
+            flex-direction: column;
+            padding-left: 0;
+            align-items: center;
+            justify-content: start;
+            margin-top: none;
+        }
+    }
 }
 
 li {
-    display: inline;
+    display: flex;
     padding: 0 1.75em 0 1.75em;
     color: color(red1);
+    width: 12%;
+    margin: none;
+    align-items: center;
+    justify-content: center;
+
+    @include tablet {
+        width: 50%;
+        display: block;
+        text-align: center;
+    }
 }
 
 a {
@@ -68,13 +117,31 @@ a:hover {
 
 header{
     width: 100%;
+    height: 20vh;
     display: flex;
+
+    @include tablet {
+        height: 35vh;
+        flex-direction: column;
+    }
 }
 
 .heading {
     float: left;
     width: 25%;
     padding: 3em 0 0 6em;
+
+    @include tablet {
+        width: 100%;
+        padding: 3em 0 0 0;
+        text-align: center;
+    }
+
+    @include phone {
+        height: 50%;
+    }
+
+
 }
 
 .content {
@@ -87,6 +154,10 @@ header{
     
     .img-holder {
         width: 60%;
+
+        @include tablet {
+            width: 100%;
+        }
 
         img {
             width: 100%;
